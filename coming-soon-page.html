@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coming Soon - Xentrika</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Roboto:wght@300;400;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #0E0F28; /* Dark navy blue */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-family: 'Roboto', sans-serif;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            position: relative;
+            z-index: 10;
+            padding: 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        
+        .logo-svg {
+            height: 50px;
+            width: auto;
+            filter: brightness(1.2); /* Optional: to match the bright cyan of the current logo */
+        }
+        
+        .company-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: white;
+        }
+        
+        .slogan {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-top: 10px;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards 1s;
+        }
+        
+        .contact {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards 1.5s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+
+        .contact i {
+            color: #2CDFDF;
+        }
+
+        .contact:hover {
+            color: #ffffff;
+        }
+        
+        .corner {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #0044FF, #00CCFF);
+            z-index: 1;
+        }
+        
+        .corner-top-right {
+            top: 0;
+            right: 0;
+            clip-path: polygon(100% 0, 0 0, 100% 100%);
+        }
+        
+        .corner-bottom-left {
+            bottom: 0;
+            left: 0;
+            clip-path: polygon(0 100%, 0 0, 100% 100%);
+        }
+
+        h1 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 3rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: 900;
+            color: white;
+            opacity: 0;
+            animation: fadeIn 1s ease-out forwards 0.5s;
+        }
+        
+        /* Particle canvas */
+        #particles-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Enhanced responsive styles */
+        @media (max-width: 768px) {
+            .corner {
+                width: 150px;
+                height: 150px;
+            }
+            
+            h1 {
+                font-size: 2.5rem;
+                margin-bottom: 20px;
+            }
+            
+            .company-name {
+                font-size: 2rem;
+            }
+            
+            .slogan {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .corner {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .logo-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+                margin-top: 20px;
+            }
+            
+            .company-name {
+                font-size: 1.5rem;
+            }
+            
+            .slogan {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            .contact {
+                font-size: 0.9rem;
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="corner corner-top-right"></div>
+    <div class="corner corner-bottom-left"></div>
+    <canvas id="particles-canvas"></canvas>
+    
+    <div class="container">
+        <div class="logo-container">
+            <img src="logo.svg" alt="Xentrika Logo" class="logo-svg">
+        </div>
+        
+        <div class="slogan">Securing digital frontiers with intelligence and precision.</div>
+        
+        <h1>Coming Soon</h1>
+        
+        <div class="contact">
+            <i class="fas fa-phone-alt"></i>
+            Call us on +94 70 512 6776
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Particle animation
+            const canvas = document.getElementById('particles-canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set canvas dimensions
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+            
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+            
+            // Particle class
+            class Particle {
+                constructor() {
+                    this.x = Math.random() * canvas.width;
+                    this.y = Math.random() * canvas.height;
+                    this.size = Math.random() * 2 + 0.5;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.color = '#2CDFDF';
+                    this.opacity = Math.random() * 0.5 + 0.1;
+                }
+                
+                update() {
+                    this.x += this.speedX;
+                    this.y += this.speedY;
+                    
+                    // Bounce off edges
+                    if (this.x < 0 || this.x > canvas.width) {
+                        this.speedX = -this.speedX;
+                    }
+                    
+                    if (this.y < 0 || this.y > canvas.height) {
+                        this.speedY = -this.speedY;
+                    }
+                }
+                
+                draw() {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(44, 223, 223, ${this.opacity})`;
+                    ctx.fill();
+                }
+            }
+            
+            // Create particles
+            const particlesArray = [];
+            const particleCount = Math.min(100, Math.floor(window.innerWidth / 10));
+            
+            for (let i = 0; i < particleCount; i++) {
+                particlesArray.push(new Particle());
+            }
+            
+            // Connect particles with lines if they are close
+            function connectParticles() {
+                for (let i = 0; i < particlesArray.length; i++) {
+                    for (let j = i; j < particlesArray.length; j++) {
+                        const dx = particlesArray[i].x - particlesArray[j].x;
+                        const dy = particlesArray[i].y - particlesArray[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < 100) {
+                            const opacity = 1 - distance / 100;
+                            ctx.beginPath();
+                            ctx.strokeStyle = `rgba(44, 223, 223, ${opacity * 0.2})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.moveTo(particlesArray[i].x, particlesArray[i].y);
+                            ctx.lineTo(particlesArray[j].x, particlesArray[j].y);
+                            ctx.stroke();
+                        }
+                    }
+                }
+            }
+            
+            // Animation loop
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                
+                for (let i = 0; i < particlesArray.length; i++) {
+                    particlesArray[i].update();
+                    particlesArray[i].draw();
+                }
+                
+                connectParticles();
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+            
+            // Handle window resize
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                
+                // Adjust particle count based on screen size
+                const newParticleCount = Math.min(100, Math.floor(window.innerWidth / 10));
+                
+                // Add or remove particles as needed
+                if (newParticleCount > particlesArray.length) {
+                    for (let i = particlesArray.length; i < newParticleCount; i++) {
+                        particlesArray.push(new Particle());
+                    }
+                } else if (newParticleCount < particlesArray.length) {
+                    particlesArray.splice(newParticleCount);
+                }
+            });
+        });
+    </script>
+</body>
+</html>
